@@ -1,103 +1,92 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Flou Deco</title>
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-
-  <!-- Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
-  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="theme-essential">
 
-  <!-- LIQUID BACKGROUND -->
+  <!-- Background -->
   <div class="liquid-bg"></div>
 
-  <!-- BACKGROUND MUSIC -->
+  <!-- Audio -->
   <audio id="bgm" preload="auto" loop>
     <source src="Sweet-Love.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- HEADER -->
+  <!-- Header -->
   <header class="top">
-    <div></div> <!-- spacer kiri (audio icon DIHAPUS sesuai final clean) -->
-
+    <div class="spacer"></div>
     <div class="brand">Flou Deco</div>
-
-    <div class="menu">
+    <div class="menu" id="menuBtn">
       <i class="fa-solid fa-bars"></i>
     </div>
   </header>
 
-  <!-- POPUP INFO PERUSAHAAN (HIDDEN BY DEFAULT) -->
+  <!-- Popup -->
   <div class="popup" id="popup">
     <h3>Flou Deco</h3>
     <p>
       Dekorasi wedding premium dengan konsep
-      elegan & berkelas.
+      elegan dan berkelas.
     </p>
   </div>
 
-  <!-- CAROUSEL -->
-  <section class="carousel-wrapper">
-    <div class="carousel">
+  <!-- Carousel -->
+  <section class="carousel-wrapper" id="carousel">
+    <div class="card active" data-theme="essential" data-link="paket-indoor.html">
+      <h4>PAKET INDOOR</h4>
+      <h2>Essential</h2>
+      <p>Dekorasi indoor elegan</p>
+    </div>
 
-      <div class="card" data-theme="essential" data-link="paket-indoor.html">
-        <h4>PAKET INDOOR</h4>
-        <h2>Essential</h2>
-        <p>Dekorasi indoor elegan</p>
-      </div>
+    <div class="card" data-theme="classic" data-link="paket-4m.html">
+      <h4>4 METER</h4>
+      <h2>Classic</h2>
+      <p>Backdrop mewah</p>
+    </div>
 
-      <div class="card" data-theme="classic" data-link="paket-4m.html">
-        <h4>4 METER</h4>
-        <h2>Classic</h2>
-        <p>Backdrop 4 meter mewah</p>
-      </div>
+    <div class="card" data-theme="signature" data-link="paket-6m.html">
+      <h4>6 METER</h4>
+      <h2>Signature</h2>
+      <p>Tampilan eksklusif</p>
+    </div>
 
-      <div class="card" data-theme="signature" data-link="paket-6m.html">
-        <h4>6 METER</h4>
-        <h2>Signature</h2>
-        <p>Tampilan megah & eksklusif</p>
-      </div>
+    <div class="card" data-theme="luxury" data-link="paket-8m.html">
+      <h4>8 METER</h4>
+      <h2>Luxury</h2>
+      <p>Dekorasi premium</p>
+    </div>
 
-      <div class="card" data-theme="luxury" data-link="paket-8m.html">
-        <h4>8 METER</h4>
-        <h2>Luxury</h2>
-        <p>Dekorasi full premium</p>
-      </div>
-
-      <div class="card" data-theme="dream" data-link="paket-custom.html">
-        <h4>KUSTOM</h4>
-        <h2>Custom</h2>
-        <p>Desain sesuai impian</p>
-      </div>
-
+    <div class="card" data-theme="dream" data-link="paket-custom.html">
+      <h4>KUSTOM</h4>
+      <h2>Custom</h2>
+      <p>Sesuai impian</p>
     </div>
   </section>
 
-  <!-- ACTION BUTTON -->
+  <!-- Button -->
   <div class="choose">
-    <button class="glass-btn">
-      <span class="btn-icon">✓</span>
-      <span class="btn-divider"></span>
-      <span class="btn-text">PILIH</span>
+    <button class="glass-btn" id="chooseBtn">
+      <span>✓</span>
+      <span class="divider"></span>
+      <span>PILIH</span>
     </button>
   </div>
 
-  <!-- FOOTER -->
+  <!-- Footer -->
   <footer>
     <i class="fa-brands fa-instagram"></i>
     <i class="fa-brands fa-tiktok"></i>
     <i class="fa-brands fa-facebook"></i>
   </footer>
 
-  <!-- JS -->
   <script src="script.js"></script>
 </body>
 </html>
