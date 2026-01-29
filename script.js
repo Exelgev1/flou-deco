@@ -10,13 +10,13 @@ const menuBtn   = document.querySelector('.menu');
 const audio     = document.getElementById('bgm');
 
 /* =========================================================
-   CONFIG & STATE
+   CONFIG
    ========================================================= */
 let index = 0;
 let startX = 0;
 let audioUnlocked = false;
 
-const SWIPE_THRESHOLD = 40; // besar kecil swipe (px)
+const SWIPE_THRESHOLD = 40;
 
 /* =========================================================
    CAROUSEL RENDER
@@ -41,46 +41,49 @@ function updateCarousel(){
 updateCarousel();
 
 /* =========================================================
-   SWIPE START
-   - set titik awal swipe
+   TOUCH START (AUDIO + SWIPE START)  🔑
    ========================================================= */
 carousel.addEventListener('touchstart', e=>{
   startX = e.touches[0].clientX;
+
+  // 🔊 unlock audio di gesture yang sama
+  if(!audioUnlocked){
+    audio.volume = 1;
+    audio.play().then(()=>{
+      audioUnlocked = true;
+    }).catch(()=>{});
+  }
 },{ passive:true });
 
 /* =========================================================
-   SWIPE END
-   - swipe valid → pindah card
-   - swipe pertama → audio play
+   TOUCH END (SWIPE DETECTION)
    ========================================================= */
 carousel.addEventListener('touchend', e=>{
   const endX = e.changedTouches[0].clientX;
   const diff = startX - endX;
 
-  let didSwipe = false;
-
   if(diff > SWIPE_THRESHOLD){
     index = (index + 1) % cards.length;
-    didSwipe = true;
   }
 
   if(diff < -SWIPE_THRESHOLD){
     index = (index - 1 + cards.length) % cards.length;
-    didSwipe = true;
   }
 
-  // 🔊 AUDIO HANYA JALAN JIKA BENAR-BENAR SWIPE
-  if(didSwipe && !audioUnlocked){
-    audio.volume = 1; // atur volume di sini
+  updateCarousel();
+});
+
+/* =========================================================
+   CLICK FALLBACK (AUDIO SAFETY)
+   ========================================================= */
+document.addEventListener('click', ()=>{
+  if(!audioUnlocked){
+    audio.volume = 1;
     audio.play().then(()=>{
       audioUnlocked = true;
     }).catch(()=>{});
   }
-
-  if(didSwipe){
-    updateCarousel();
-  }
-});
+},{ once:true });
 
 /* =========================================================
    BUTTON PILIH
