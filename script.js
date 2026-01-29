@@ -79,3 +79,60 @@ function unlockAudio(){
 ['touchstart','touchend','click'].forEach(evt=>{
   document.addEventListener(evt, unlockAudio, { once:true });
 });
+
+const body = document.body;
+const liquid = document.querySelector('.liquid-bg');
+
+let offsetX = 0;
+let velocity = 0;
+
+// ===== GANTI TEMA SESUAI CARD =====
+function applyTheme(card){
+  const theme = card.dataset.theme;
+  body.className = body.className.replace(/theme-\w+/g,'');
+  body.classList.add(`theme-${theme}`);
+}
+
+// panggil saat carousel update
+function updateCarousel(){
+  cards.forEach((card,i)=>{
+    card.className='card';
+
+    if(i===index){
+      card.classList.add('active');
+      applyTheme(card);
+    }else if(i===(index-1+cards.length)%cards.length){
+      card.classList.add('prev');
+    }else if(i===(index+1)%cards.length){
+      card.classList.add('next');
+    }else{
+      card.classList.add('hidden');
+    }
+  });
+}
+
+// ===== LIQUID FOLLOW SWIPE =====
+let startX=0;
+
+document.addEventListener('touchstart',e=>{
+  startX=e.touches[0].clientX;
+},{passive:true});
+
+document.addEventListener('touchmove',e=>{
+  const dx=e.touches[0].clientX-startX;
+  velocity=dx*0.4;
+  offsetX+=velocity;
+  liquid.style.transform=`translateX(${offsetX}px)`;
+},{passive:true});
+
+document.addEventListener('touchend',()=>{
+  // inertia balik pelan
+  const decay=()=>{
+    offsetX*=0.85;
+    liquid.style.transform=`translateX(${offsetX}px)`;
+    if(Math.abs(offsetX)>0.5){
+      requestAnimationFrame(decay);
+    }
+  };
+  decay();
+});
