@@ -1,9 +1,31 @@
+/* =========================================================
+   CONFIG & ELEMENT
+   ========================================================= */
 const cards = document.querySelectorAll('.card');
+const carouselArea = document.querySelector('.carousel-wrapper');
 const chooseBtn = document.getElementById('chooseBtn');
 const menuBtn = document.getElementById('menuBtn');
 const popup = document.getElementById('popup');
+const audio = document.getElementById('bgm');
+const body = document.body;
+const liquid = document.querySelector('.liquid-bg');
 
+/* =========================================================
+   STATE
+   ========================================================= */
 let index = 0;
+let startX = 0;
+let audioUnlocked = false;
+let liquidOffset = 0;
+
+/* =========================================================
+   CAROUSEL + THEME
+   ========================================================= */
+function applyTheme(card){
+  const theme = card.dataset.theme;
+  body.className = body.className.replace(/theme-\\w+/g,'');
+  body.classList.add(`theme-${theme}`);
+}
 
 function updateCarousel(){
   cards.forEach((card,i)=>{
@@ -11,6 +33,7 @@ function updateCarousel(){
 
     if(i === index){
       card.classList.add('active');
+      applyTheme(card);
     }else if(i === (index - 1 + cards.length) % cards.length){
       card.classList.add('prev');
     }else if(i === (index + 1) % cards.length){
@@ -23,116 +46,61 @@ function updateCarousel(){
 
 updateCarousel();
 
-/* SWIPE */
-let startX = 0;
-let isSwiping = false;
-
-document.addEventListener('touchstart', e => {
-  startX = e.touches[0].clientX;
-  isSwiping = true;
-}, { passive: true });
-
-document.addEventListener('touchmove', e => {
-  if(isSwiping){
-    e.preventDefault();
-  }
-}, { passive: false });
-
-document.addEventListener('touchend', e => {
-  if(!isSwiping) return;
-
-  let endX = e.changedTouches[0].clientX;
-  let diff = startX - endX;
-
-  if(diff > 50) index = (index + 1) % cards.length;
-  if(diff < -50) index = (index - 1 + cards.length) % cards.length;
-
-  updateCarousel();
-  isSwiping = false;
-});
-
-/* PILIH */
-chooseBtn.onclick = ()=>{
-  window.location.href = cards[index].dataset.link;
-};
-
-/* MENU */
-menuBtn.onclick = ()=>{
-  popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
-};
-
-/* AUDIO */
-const audio = document.getElementById('bgm');
-let audioUnlocked = false;
-
-// fungsi unlock audio
+/* =========================================================
+   AUDIO — UNLOCK ON FIRST GESTURE
+   ========================================================= */
 function unlockAudio(){
   if(audioUnlocked) return;
-
   audio.volume = 1;
   audio.play().then(()=>{
     audioUnlocked = true;
   }).catch(()=>{});
 }
 
-// gesture PERTAMA apa pun → musik nyala
-['touchstart','touchend','click'].forEach(evt=>{
-  document.addEventListener(evt, unlockAudio, { once:true });
-});
+/* =========================================================
+   SWIPE (ONLY ON CAROUSEL)
+   ========================================================= */
+carouselArea.addEventListener('touchstart', e=>{
+  startX = e.touches[0].clientX;
+  unlockAudio(); // 🔊 swipe pertama = audio nyala
+},{ passive:true });
 
-const body = document.body;
-const liquid = document.querySelector('.liquid-bg');
+carouselArea.addEventListener('touchmove', e=>{
+  const dx = e.touches[0].clientX - startX;
 
-let offsetX = 0;
-let velocity = 0;
+  /* Liquid follow swipe */
+  liquidOffset = dx * 0.2;
+  liquid.style.transform = `translateX(${liquidOffset}px)`;
+},{ passive:true });
 
-// ===== GANTI TEMA SESUAI CARD =====
-function applyTheme(card){
-  const theme = card.dataset.theme;
-  body.className = body.className.replace(/theme-\w+/g,'');
-  body.classList.add(`theme-${theme}`);
-}
+carouselArea.addEventListener('touchend', e=>{
+  const endX = e.changedTouches[0].clientX;
+  const diff = startX - endX;
 
-// panggil saat carousel update
-function updateCarousel(){
-  cards.forEach((card,i)=>{
-    card.className='card';
+  if(diff > 50) index = (index + 1) % cards.length;
+  if(diff < -50) index = (index - 1 + cards.length) % cards.length;
 
-    if(i===index){
-      card.classList.add('active');
-      applyTheme(card);
-    }else if(i===(index-1+cards.length)%cards.length){
-      card.classList.add('prev');
-    }else if(i===(index+1)%cards.length){
-      card.classList.add('next');
-    }else{
-      card.classList.add('hidden');
-    }
-  });
-}
+  updateCarousel();
 
-// ===== LIQUID FOLLOW SWIPE =====
-let startX=0;
-
-document.addEventListener('touchstart',e=>{
-  startX=e.touches[0].clientX;
-},{passive:true});
-
-document.addEventListener('touchmove',e=>{
-  const dx=e.touches[0].clientX-startX;
-  velocity=dx*0.4;
-  offsetX+=velocity;
-  liquid.style.transform=`translateX(${offsetX}px)`;
-},{passive:true});
-
-document.addEventListener('touchend',()=>{
-  // inertia balik pelan
-  const decay=()=>{
-    offsetX*=0.85;
-    liquid.style.transform=`translateX(${offsetX}px)`;
-    if(Math.abs(offsetX)>0.5){
-      requestAnimationFrame(decay);
+  /* Liquid inertia balik halus */
+  const relax = ()=>{
+    liquidOffset *= 0.85;
+    liquid.style.transform = `translateX(${liquidOffset}px)`;
+    if(Math.abs(liquidOffset) > 0.5){
+      requestAnimationFrame(relax);
     }
   };
-  decay();
+  relax();
 });
+
+/* =========================================================
+   BUTTON & MENU
+   ========================================================= */
+chooseBtn.onclick = ()=>{
+  window.location.href = cards[index].dataset.link;
+};
+
+menuBtn.onclick = ()=>{
+  popup.style.display =
+    popup.style.display === 'block' ? 'none' : 'block';
+};
