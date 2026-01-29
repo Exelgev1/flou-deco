@@ -1,15 +1,13 @@
-body.style.transition = 'background-color 1s ease';
-
 /* =========================================================
    CONFIG & ELEMENT
    ========================================================= */
+const body = document.body;
 const cards = document.querySelectorAll('.card');
 const carouselArea = document.querySelector('.carousel-wrapper');
 const chooseBtn = document.getElementById('chooseBtn');
 const menuBtn = document.getElementById('menuBtn');
 const popup = document.getElementById('popup');
 const audio = document.getElementById('bgm');
-const body = document.body;
 const liquid = document.querySelector('.liquid-bg');
 
 /* =========================================================
@@ -21,7 +19,7 @@ let audioUnlocked = false;
 let liquidOffset = 0;
 
 /* =========================================================
-   CAROUSEL + THEME
+   THEME SYSTEM (AMAN & TIDAK NYANGKUT)
    ========================================================= */
 const THEMES = [
   'theme-essential',
@@ -36,7 +34,9 @@ function applyTheme(card){
   body.classList.add(`theme-${card.dataset.theme}`);
 }
 
-
+/* =========================================================
+   CAROUSEL
+   ========================================================= */
 function updateCarousel(){
   cards.forEach((card,i)=>{
     card.className = 'card';
@@ -54,10 +54,8 @@ function updateCarousel(){
   });
 }
 
-updateCarousel();
-
 /* =========================================================
-   AUDIO — UNLOCK ON FIRST GESTURE
+   AUDIO — UNLOCK ON FIRST SWIPE
    ========================================================= */
 function unlockAudio(){
   if(audioUnlocked) return;
@@ -68,7 +66,7 @@ function unlockAudio(){
 }
 
 /* =========================================================
-   SWIPE (ONLY ON CAROUSEL)
+   SWIPE (ONLY CAROUSEL AREA)
    ========================================================= */
 carouselArea.addEventListener('touchstart', e=>{
   startX = e.touches[0].clientX;
@@ -78,7 +76,7 @@ carouselArea.addEventListener('touchstart', e=>{
 carouselArea.addEventListener('touchmove', e=>{
   const dx = e.touches[0].clientX - startX;
 
-  /* Liquid follow swipe */
+  // liquid ikut swipe (ringan)
   liquidOffset = dx * 0.2;
   liquid.style.transform = `translateX(${liquidOffset}px)`;
 },{ passive:true });
@@ -87,12 +85,12 @@ carouselArea.addEventListener('touchend', e=>{
   const endX = e.changedTouches[0].clientX;
   const diff = startX - endX;
 
-  if(diff > 50) index = (index + 1) % cards.length;
-  if(diff < -50) index = (index - 1 + cards.length) % cards.length;
+  if(diff > 40) index = (index + 1) % cards.length;
+  if(diff < -40) index = (index - 1 + cards.length) % cards.length;
 
   updateCarousel();
 
-  /* Liquid inertia balik halus */
+  // liquid balik halus
   const relax = ()=>{
     liquidOffset *= 0.85;
     liquid.style.transform = `translateX(${liquidOffset}px)`;
@@ -114,3 +112,11 @@ menuBtn.onclick = ()=>{
   popup.style.display =
     popup.style.display === 'block' ? 'none' : 'block';
 };
+
+/* =========================================================
+   FORCE INITIAL STATE (ANTI LOMPAT KE CUSTOM)
+   ========================================================= */
+window.addEventListener('load', ()=>{
+  index = 0;
+  updateCarousel();
+});
