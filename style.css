@@ -1,5 +1,28 @@
-/* ===== LIQUID GRADIENT BACKGROUND ===== */
+html, body{
+  overscroll-behavior:none;
+  touch-action:pan-y;
+}
 
+/* ===== ROOT ===== */
+:root{
+  --gold:#d4af37;
+}
+
+/* ===== RESET ===== */
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Poppins,sans-serif;
+  color:#fff;
+  overflow:hidden;
+  position:relative;
+  z-index:1;
+}
+
+iframe{display:none}
+
+/* ===== LIQUID BACKGROUND ===== */
 .liquid-bg{
   position:fixed;
   inset:0;
@@ -16,26 +39,26 @@
   left:-10%;
   filter:blur(80px);
   opacity:.9;
-  animation:liquidMove 25s ease-in-out infinite alternate;
+  animation:liquidMove 28s ease-in-out infinite alternate;
 }
 
-/* Blob 1 – Biru */
+/* Biru */
 .liquid-bg span:nth-child(1){
   background:radial-gradient(circle at 30% 30%, #1a4fff, transparent 60%);
-  animation-duration:28s;
+  animation-duration:30s;
 }
 
-/* Blob 2 – Ungu */
+/* Ungu */
 .liquid-bg span:nth-child(2){
   background:radial-gradient(circle at 70% 40%, #7a2cff, transparent 60%);
-  animation-duration:32s;
+  animation-duration:34s;
   animation-direction:alternate-reverse;
 }
 
-/* Blob 3 – Pink */
+/* Pink */
 .liquid-bg span:nth-child(3){
   background:radial-gradient(circle at 50% 70%, #ff2f92, transparent 60%);
-  animation-duration:36s;
+  animation-duration:38s;
 }
 
 @keyframes liquidMove{
@@ -43,46 +66,14 @@
     transform:translate(0,0) scale(1);
   }
   50%{
-    transform:translate(6%, -4%) scale(1.05);
+    transform:translate(6%,-4%) scale(1.05);
   }
   100%{
-    transform:translate(-4%, 6%) scale(1.1);
+    transform:translate(-4%,6%) scale(1.1);
   }
 }
 
-html, body{
-  overscroll-behavior: none;
-  touch-action: pan-y;
-}
-
-:root{
-  --bg1:#5f6caf;
-  --bg2:#4b568f;
-  --bg3:#3f4877;
-  --gold:#d4af37;
-}
-
-*{box-sizing:border-box}
-
-body{
-  margin:0;
-  font-family:Poppins,sans-serif;
-  color:#fff;
-  background:linear-gradient(120deg,var(--bg1),var(--bg2),var(--bg3));
-  background-size:400% 400%;
-  animation:bg 15s ease infinite;
-  overflow:hidden;
-}
-
-@keyframes bg{
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
-}
-
-iframe{display:none}
-
-/* HEADER */
+/* ===== HEADER ===== */
 .top{
   display:flex;
   justify-content:space-between;
@@ -105,7 +96,7 @@ iframe{display:none}
   align-items:center;
 }
 
-/* POPUP */
+/* ===== POPUP ===== */
 .popup{
   position:fixed;
   top:80px;
@@ -118,7 +109,7 @@ iframe{display:none}
   display:none;
 }
 
-/* CAROUSEL */
+/* ===== CAROUSEL ===== */
 .carousel-wrapper{
   position:relative;
   height:420px;
@@ -157,7 +148,7 @@ iframe{display:none}
   font-family:"Playfair Display",serif;
 }
 
-/* STATES */
+/* ===== CARD STATES ===== */
 .card.active{
   transform:translate(-50%,-50%) scale(1);
   z-index:3;
@@ -180,7 +171,7 @@ iframe{display:none}
   pointer-events:none;
 }
 
-/* BUTTON */
+/* ===== BUTTON ===== */
 .choose{
   display:flex;
   justify-content:center;
@@ -195,7 +186,7 @@ iframe{display:none}
   font-weight:600;
 }
 
-/* FOOTER */
+/* ===== FOOTER ===== */
 footer{
   display:flex;
   justify-content:center;
