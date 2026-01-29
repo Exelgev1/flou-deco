@@ -194,8 +194,10 @@ body.theme-dream{
   height:420px;
   display:flex;
   justify-content:center;
-  align-items:center;
+  align-items:flex-start;
+  padding-top:80px; /* 👈 jarak dari header */
 }
+
 
 .carousel{
   position:relative;
@@ -213,7 +215,7 @@ body.theme-dream{
   background:linear-gradient(180deg,#1c1c2b,#0f0f16);
   border-radius:22px;
   text-align:center;
-  transform:translate(-50%,-50%);
+  transform:translate(-50%,-40%);
   transition:.6s ease;
   box-shadow:0 30px 60px rgba(0,0,0,.5);
 }
@@ -256,15 +258,32 @@ body.theme-dream{
 .choose{
   display:flex;
   justify-content:center;
-  margin-top:-20px;
+  margin-top:30px; /* 👈 tombol turun */
 }
 
 .choose button{
-  padding:14px 42px;
-  border:none;
-  border-radius:30px;
-  background:linear-gradient(135deg,var(--gold),#fff1a8);
+  padding:14px 46px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.45);
+
+  background:rgba(255,255,255,.25);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+
+  color:#1a1a1a;
   font-weight:600;
+  letter-spacing:1px;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.15),
+    inset 0 1px 1px rgba(255,255,255,.6);
+
+  transition:.3s ease;
+}
+
+.choose button:active{
+  transform:scale(.96);
+  background:rgba(255,255,255,.35);
 }
 
 /* =========================================================
