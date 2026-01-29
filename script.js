@@ -63,49 +63,19 @@ menuBtn.onclick = ()=>{
 
 /* AUDIO */
 const audio = document.getElementById('bgm');
-const audioBtn = document.querySelector('.audio');
+let audioUnlocked = false;
 
-let audioReady = false;
-let audioOn = false;
+// fungsi unlock audio
+function unlockAudio(){
+  if(audioUnlocked) return;
 
-// trigger autoplay on FIRST interaction (wajib di mobile)
-function enableAudio(){
-  if(audioReady) return;
-
+  audio.volume = 1;
   audio.play().then(()=>{
-    audioOn = true;
-    audioReady = true;
-    audioBtn.classList.remove('off');
+    audioUnlocked = true;
   }).catch(()=>{});
-
-  document.removeEventListener('touchstart', enableAudio);
 }
 
-// trigger dari gesture pertama
-document.addEventListener('touchstart', enableAudio, { once:true });
-
-// toggle manual
-audioBtn.addEventListener('click',()=>{
-  if(!audioReady){
-    enableAudio();
-    return;
-  }
-
-  if(audioOn){
-    audio.pause();
-    audioBtn.classList.add('off');
-  }else{
-    audio.play();
-    audioBtn.classList.remove('off');
-  }
-
-  audioOn = !audioOn;
+// gesture PERTAMA apa pun → musik nyala
+['touchstart','touchend','click'].forEach(evt=>{
+  document.addEventListener(evt, unlockAudio, { once:true });
 });
-
-document.body.addEventListener('click', () => {
-  audio.play()
-    .then(() => console.log('AUDIO PLAY OK'))
-    .catch(err => console.log('AUDIO ERROR:', err));
-}, { once:true });
-
-
