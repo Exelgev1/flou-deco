@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flou Deco</title>
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Icon -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Background music (autoplay) -->
+<iframe id="bgm" src="https://www.youtube.com/embed/VIDEO_ID?autoplay=1&mute=1&loop=1&playlist=VIDEO_ID"></iframe>
+
+<header>
+  <div class="audio-btn">
+    <i class="fa-solid fa-music"></i>
+    <div class="spectrum">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <div class="logo">
+    <i class="fa-solid fa-rings-wedding"></i>
+    <span>Flou Deco</span>
+  </div>
+
+  <div class="menu-btn" id="menuBtn">
+    <i class="fa-solid fa-bars"></i>
+  </div>
+</header>
+
+<!-- Popup Info -->
+<div class="popup" id="popup">
+  <h3>Flou Deco</h3>
+  <p>Dekorasi wedding premium dengan konsep elegan, modern, dan berkelas untuk hari istimewa Anda.</p>
+</div>
+
+<!-- Carousel -->
+<section class="carousel-wrapper">
+  <div class="carousel" id="carousel">
+
+    <div class="card" data-link="paket-indoor.html">
+      <h4>PAKET INDOOR</h4>
+      <h2>Essential</h2>
+      <p>Dekorasi indoor elegan dan rapi</p>
+    </div>
+
+    <div class="card" data-link="paket-4m.html">
+      <h4>4 METER</h4>
+      <h2>Classic</h2>
+      <p>Backdrop 4 meter berkelas</p>
+    </div>
+
+    <div class="card" data-link="paket-6m.html">
+      <h4>6 METER</h4>
+      <h2>Signature</h2>
+      <p>Dekorasi megah dan eksklusif</p>
+    </div>
+
+    <div class="card" data-link="paket-8m.html">
+      <h4>8 METER</h4>
+      <h2>Luxury</h2>
+      <p>Tampilan full premium</p>
+    </div>
+
+    <div class="card" data-link="paket-custom.html">
+      <h4>KUSTOM</h4>
+      <h2>Custom</h2>
+      <p>Desain sesuai impian Anda</p>
+    </div>
+
+  </div>
+</section>
+
+<div class="choose">
+  <button id="chooseBtn">PILIH</button>
+</div>
+
+<footer>
+  <i class="fa-brands fa-instagram"></i>
+  <i class="fa-brands fa-tiktok"></i>
+  <i class="fa-brands fa-facebook"></i>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
