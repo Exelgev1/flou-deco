@@ -5,7 +5,9 @@ html, body{
 
 /* ===== ROOT ===== */
 :root{
-  --gold:#d4af37;
+  --c1:#9bbcff;
+  --c2:#d6b4ff;
+  --c3:#ffd6e8;
 }
 
 /* ===== RESET ===== */
@@ -23,76 +25,70 @@ body{
 iframe{display:none}
 
 /* ===== MOBILE LIQUID BACKGROUND ===== */
-
 .liquid-bg{
   position:fixed;
   inset:0;
   z-index:-1;
   overflow:hidden;
-  background:#f3eef9;
+  background:#f6f1fa;
 }
 
-.liquid-bg span{
+.liquid-bg::before,
+.liquid-bg::after{
+  content:'';
   position:absolute;
   width:120vw;
   height:120vw;
   border-radius:50%;
-  filter:blur(50px);
-  opacity:0.85;
-  animation:liquidFlow 6s linear infinite;
+  filter:blur(40px);
+  opacity:.9;
+  background:radial-gradient(circle,var(--c1),var(--c2),var(--c3));
+  animation:wave 4s linear infinite;
   will-change:transform;
 }
 
-/* Blob 1 – pastel blue */
-.liquid-bg span:nth-child(1){
-  background:#8fb3ff;
-  top:-20%;
-  left:-20%;
-  animation-duration:6s;
+.liquid-bg::after{
+  animation-duration:5.5s;
+  opacity:.75;
 }
 
-/* Blob 2 – pastel pink */
-.liquid-bg span:nth-child(2){
-  background:#f4a9d8;
-  top:10%;
-  right:-25%;
-  animation-duration:7s;
-  animation-direction:reverse;
+@keyframes wave{
+  0%{transform:translate(0,0) scale(1)}
+  25%{transform:translate(20px,-30px) scale(1.12)}
+  50%{transform:translate(-30px,20px) scale(1.18)}
+  75%{transform:translate(25px,30px) scale(1.1)}
+  100%{transform:translate(0,0) scale(1)}
 }
 
-/* Blob 3 – pastel purple */
-.liquid-bg span:nth-child(3){
-  background:#b8a6ff;
-  bottom:-25%;
-  left:5%;
-  animation-duration:6.5s;
+/* ===== CARD MOOD PALETTES ===== */
+body.theme-essential{
+  --c1:#a9c3ff;
+  --c2:#d8ccff;
+  --c3:#f2eaff;
 }
 
-/* Blob 4 – pastel cream */
-.liquid-bg span:nth-child(4){
-  background:#fde1c8;
-  bottom:-20%;
-  right:-20%;
-  animation-duration:7.5s;
+body.theme-classic{
+  --c1:#c9b18f;
+  --c2:#e5d6b8;
+  --c3:#f7efe3;
 }
 
-/* ANIMASI CEPAT & TERASA */
-@keyframes liquidFlow{
-  0%{
-    transform:translate(0,0) scale(1);
-  }
-  25%{
-    transform:translate(12px,-18px) scale(1.1);
-  }
-  50%{
-    transform:translate(-18px,14px) scale(1.15);
-  }
-  75%{
-    transform:translate(14px,18px) scale(1.08);
-  }
-  100%{
-    transform:translate(0,0) scale(1);
-  }
+body.theme-signature{
+  --c1:#8fa9ff;
+  --c2:#b6c6ff;
+  --c3:#e9eeff;
+}
+
+body.theme-luxury{
+  --c1:#2c2c2c;
+  --c2:#5a4a2a;
+  --c3:#c9b37d;
+}
+
+body.theme-dream{
+  --c1:#ffb3d9;
+  --c2:#d6b8ff;
+  --c3:#b8e1ff;
 }
 
 /* ===== HEADER ===== */
