@@ -1,3 +1,55 @@
+/* ===== LIQUID GRADIENT BACKGROUND ===== */
+
+.liquid-bg{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  overflow:hidden;
+  background:#05051a;
+}
+
+.liquid-bg span{
+  position:absolute;
+  width:120%;
+  height:120%;
+  top:-10%;
+  left:-10%;
+  filter:blur(80px);
+  opacity:.9;
+  animation:liquidMove 25s ease-in-out infinite alternate;
+}
+
+/* Blob 1 – Biru */
+.liquid-bg span:nth-child(1){
+  background:radial-gradient(circle at 30% 30%, #1a4fff, transparent 60%);
+  animation-duration:28s;
+}
+
+/* Blob 2 – Ungu */
+.liquid-bg span:nth-child(2){
+  background:radial-gradient(circle at 70% 40%, #7a2cff, transparent 60%);
+  animation-duration:32s;
+  animation-direction:alternate-reverse;
+}
+
+/* Blob 3 – Pink */
+.liquid-bg span:nth-child(3){
+  background:radial-gradient(circle at 50% 70%, #ff2f92, transparent 60%);
+  animation-duration:36s;
+}
+
+@keyframes liquidMove{
+  0%{
+    transform:translate(0,0) scale(1);
+  }
+  50%{
+    transform:translate(6%, -4%) scale(1.05);
+  }
+  100%{
+    transform:translate(-4%, 6%) scale(1.1);
+  }
+}
+
 html, body{
   overscroll-behavior: none;
   touch-action: pan-y;
