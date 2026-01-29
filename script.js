@@ -60,3 +60,19 @@ chooseBtn.onclick = ()=>{
 menuBtn.onclick = ()=>{
   popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
 };
+
+const audioBtn = document.querySelector('.audio');
+let audioOn = false;
+
+audioBtn.addEventListener('click', () => {
+  const iframe = document.getElementById('bgm');
+
+  if(!audioOn){
+    iframe.src = iframe.src.replace('mute=1','mute=0');
+    audioOn = true;
+  }else{
+    iframe.src = iframe.src.replace('mute=0','mute=1');
+    audioOn = false;
+  }
+});
+
