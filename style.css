@@ -1,16 +1,21 @@
+/* =========================================================
+   GLOBAL BEHAVIOR (WAJIB UNTUK MOBILE)
+   ========================================================= */
 html, body{
   overscroll-behavior:none;
   touch-action:pan-y;
 }
 
-/* ===== ROOT ===== */
+/* =========================================================
+   ROOT — GANTI WARNA GLOBAL DI SINI
+   ========================================================= */
 :root{
-  --c1:#9bbcff;
-  --c2:#d6b4ff;
-  --c3:#ffd6e8;
+  --gold:#d4af37;
 }
 
-/* ===== RESET ===== */
+/* =========================================================
+   RESET
+   ========================================================= */
 *{box-sizing:border-box}
 
 body{
@@ -24,12 +29,14 @@ body{
 
 iframe{display:none}
 
-/* ===== MOBILE LIQUID BACKGROUND ===== */
+/* =========================================================
+   LIQUID BACKGROUND (MOBILE FAST + WAVE)
+   ========================================================= */
 .liquid-bg{
   position:fixed;
   inset:0;
   z-index:-1;
-  overflow:hidden;
+  pointer-events:none; /* 🔥 PENTING */
   background:#f6f1fa;
 }
 
@@ -60,7 +67,9 @@ iframe{display:none}
   100%{transform:translate(0,0) scale(1)}
 }
 
-/* ===== CARD MOOD PALETTES ===== */
+/* =========================================================
+   THEME PER CARD (TINGGAL GANTI WARNA)
+   ========================================================= */
 body.theme-essential{
   --c1:#a9c3ff;
   --c2:#d8ccff;
@@ -91,7 +100,9 @@ body.theme-dream{
   --c3:#b8e1ff;
 }
 
-/* ===== HEADER ===== */
+/* =========================================================
+   HEADER
+   ========================================================= */
 .top{
   display:flex;
   justify-content:space-between;
@@ -114,7 +125,9 @@ body.theme-dream{
   align-items:center;
 }
 
-/* ===== POPUP ===== */
+/* =========================================================
+   POPUP
+   ========================================================= */
 .popup{
   position:fixed;
   top:80px;
@@ -127,7 +140,9 @@ body.theme-dream{
   display:none;
 }
 
-/* ===== CAROUSEL ===== */
+/* =========================================================
+   CAROUSEL
+   ========================================================= */
 .carousel-wrapper{
   position:relative;
   height:420px;
@@ -146,7 +161,7 @@ body.theme-dream{
   position:absolute;
   left:50%;
   top:50%;
-  width:260px;
+  width:260px;      /* 👈 ganti ukuran card */
   height:360px;
   padding:20px;
   background:linear-gradient(180deg,#1c1c2b,#0f0f16);
@@ -166,7 +181,7 @@ body.theme-dream{
   font-family:"Playfair Display",serif;
 }
 
-/* ===== CARD STATES ===== */
+/* STATE */
 .card.active{
   transform:translate(-50%,-50%) scale(1);
   z-index:3;
@@ -189,7 +204,9 @@ body.theme-dream{
   pointer-events:none;
 }
 
-/* ===== BUTTON ===== */
+/* =========================================================
+   BUTTON
+   ========================================================= */
 .choose{
   display:flex;
   justify-content:center;
@@ -204,7 +221,9 @@ body.theme-dream{
   font-weight:600;
 }
 
-/* ===== FOOTER ===== */
+/* =========================================================
+   FOOTER
+   ========================================================= */
 footer{
   display:flex;
   justify-content:center;
