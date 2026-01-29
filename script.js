@@ -102,4 +102,10 @@ audioBtn.addEventListener('click',()=>{
   audioOn = !audioOn;
 });
 
+document.body.addEventListener('click', () => {
+  audio.play()
+    .then(() => console.log('AUDIO PLAY OK'))
+    .catch(err => console.log('AUDIO ERROR:', err));
+}, { once:true });
+
 
