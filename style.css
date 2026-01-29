@@ -32,72 +32,118 @@ iframe{display:none}
 /* =========================================================
    LIQUID BACKGROUND (MOBILE FAST + WAVE)
    ========================================================= */
+/* =========================================================
+   LIQUID BACKGROUND — FULLSCREEN & PADAT (MOBILE)
+   ========================================================= */
+
 .liquid-bg{
   position:fixed;
   inset:0;
   z-index:-1;
-  pointer-events:none; /* 🔥 PENTING */
-  background:#f6f1fa;
+  pointer-events:none;
+
+  /* BASE COLOR (ISI LAYAR) */
+  background:
+    linear-gradient(
+      180deg,
+      var(--bg-base-1),
+      var(--bg-base-2)
+    );
+
+  transition:background 1.2s ease; /* smooth antar theme */
 }
 
+/* LAYER LIQUID */
 .liquid-bg::before,
 .liquid-bg::after{
   content:'';
   position:absolute;
-  width:120vw;
-  height:120vw;
-  border-radius:50%;
-  filter:blur(40px);
-  opacity:.9;
-  background:radial-gradient(circle,var(--c1),var(--c2),var(--c3));
-  animation:wave 4s linear infinite;
+  inset:-20%;
+  filter:blur(30px);          /* lebih tajam */
+  opacity:.95;                /* lebih padat */
+  background:
+    radial-gradient(
+      circle at 30% 30%,
+      var(--c1) 0%,
+      var(--c2) 35%,
+      var(--c3) 70%
+    );
+  animation:liquidFlow 3.5s linear infinite;
   will-change:transform;
 }
 
+/* layer kedua supaya lebih kaya */
 .liquid-bg::after{
-  animation-duration:5.5s;
-  opacity:.75;
+  animation-duration:5s;
+  opacity:.85;
+  mix-blend-mode:overlay;
 }
 
-@keyframes wave{
-  0%{transform:translate(0,0) scale(1)}
-  25%{transform:translate(20px,-30px) scale(1.12)}
-  50%{transform:translate(-30px,20px) scale(1.18)}
-  75%{transform:translate(25px,30px) scale(1.1)}
-  100%{transform:translate(0,0) scale(1)}
+/* GERAK CEPAT & TERASA */
+@keyframes liquidFlow{
+  0%   {transform:translate(0,0) scale(1)}
+  25%  {transform:translate(40px,-60px) scale(1.15)}
+  50%  {transform:translate(-60px,40px) scale(1.25)}
+  75%  {transform:translate(50px,60px) scale(1.18)}
+  100% {transform:translate(0,0) scale(1)}
 }
 
 /* =========================================================
-   THEME PER CARD (TINGGAL GANTI WARNA)
+   THEME PER CARD — PADAT, ELEGAN, FULLSCREEN
    ========================================================= */
+
+body{
+  transition:
+    --c1 1s ease,
+    --c2 1s ease,
+    --c3 1s ease,
+    --bg-base-1 1s ease,
+    --bg-base-2 1s ease;
+}
+
+/* ESSENTIAL — soft romantic */
 body.theme-essential{
-  --c1:#a9c3ff;
-  --c2:#d8ccff;
-  --c3:#f2eaff;
+  --bg-base-1:#e9ecff;
+  --bg-base-2:#f7f4ff;
+  --c1:#9fb3ff;
+  --c2:#cbbcff;
+  --c3:#f1dfff;
 }
 
+/* CLASSIC — warm timeless */
 body.theme-classic{
-  --c1:#c9b18f;
-  --c2:#e5d6b8;
-  --c3:#f7efe3;
+  --bg-base-1:#efe5d5;
+  --bg-base-2:#f9f4ea;
+  --c1:#c9a97a;
+  --c2:#e2cba3;
+  --c3:#fff1d6;
 }
 
+/* SIGNATURE — modern clean */
 body.theme-signature{
-  --c1:#8fa9ff;
-  --c2:#b6c6ff;
+  --bg-base-1:#e8efff;
+  --bg-base-2:#f5f8ff;
+  --c1:#8aa7ff;
+  --c2:#b4c4ff;
   --c3:#e9eeff;
 }
 
+/* LUXURY — bold premium */
 body.theme-luxury{
-  --c1:#2c2c2c;
-  --c2:#5a4a2a;
-  --c3:#c9b37d;
+  --bg-base-1:#2a261f;
+  --bg-base-2:#5b4b2a;
+  --c1:#c9b37d;
+  --c2:#8a6d3b;
+  --c3:#3a2f1b;
 }
 
+/* CUSTOM DREAM — artistic */
 body.theme-dream{
-  --c1:#ffb3d9;
-  --c2:#d6b8ff;
-  --c3:#b8e1ff;
+  --bg-base-1:#ffd6e8;
+  --bg-base-2:#d6e8ff;
+  --c1:#ff7bb0;
+  --c2:#b49bff;
+  --c3:#7bd6ff;
 }
 
 /* =========================================================
