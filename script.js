@@ -61,18 +61,45 @@ menuBtn.onclick = ()=>{
   popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
 };
 
+/* AUDIO */
+const audio = document.getElementById('bgm');
 const audioBtn = document.querySelector('.audio');
+
+let audioReady = false;
 let audioOn = false;
 
-audioBtn.addEventListener('click', () => {
-  const iframe = document.getElementById('bgm');
+// trigger autoplay on FIRST interaction (wajib di mobile)
+function enableAudio(){
+  if(audioReady) return;
 
-  if(!audioOn){
-    iframe.src = iframe.src.replace('mute=1','mute=0');
+  audio.play().then(()=>{
     audioOn = true;
-  }else{
-    iframe.src = iframe.src.replace('mute=0','mute=1');
-    audioOn = false;
+    audioReady = true;
+    audioBtn.classList.remove('off');
+  }).catch(()=>{});
+
+  document.removeEventListener('touchstart', enableAudio);
+}
+
+// trigger dari gesture pertama
+document.addEventListener('touchstart', enableAudio, { once:true });
+
+// toggle manual
+audioBtn.addEventListener('click',()=>{
+  if(!audioReady){
+    enableAudio();
+    return;
   }
+
+  if(audioOn){
+    audio.pause();
+    audioBtn.classList.add('off');
+  }else{
+    audio.play();
+    audioBtn.classList.remove('off');
+  }
+
+  audioOn = !audioOn;
 });
+
 
