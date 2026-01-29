@@ -5,42 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Flou Deco</title>
 
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="theme-essential">
 
-  <!-- Background -->
+  <!-- LIQUID BACKGROUND -->
   <div class="liquid-bg"></div>
 
-  <!-- Audio -->
+  <!-- BACKGROUND MUSIC -->
   <audio id="bgm" preload="auto" loop>
     <source src="Sweet-Love.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- Header -->
+  <!-- HEADER -->
   <header class="top">
-    <div class="spacer"></div>
+    <div style="width:36px"></div> <!-- spacer kiri -->
     <div class="brand">Flou Deco</div>
-    <div class="menu" id="menuBtn">
+    <div class="menu">
       <i class="fa-solid fa-bars"></i>
     </div>
   </header>
 
-  <!-- Popup -->
+  <!-- POPUP INFO -->
   <div class="popup" id="popup">
     <h3>Flou Deco</h3>
     <p>
       Dekorasi wedding premium dengan konsep
-      elegan dan berkelas.
+      elegan & berkelas.
     </p>
   </div>
 
-  <!-- Carousel -->
-  <section class="carousel-wrapper" id="carousel">
-    <div class="card active" data-theme="essential" data-link="paket-indoor.html">
+  <!-- CAROUSEL -->
+  <section class="carousel-wrapper">
+
+    <div class="card" data-theme="essential" data-link="paket-indoor.html">
       <h4>PAKET INDOOR</h4>
       <h2>Essential</h2>
       <p>Dekorasi indoor elegan</p>
@@ -69,24 +74,26 @@
       <h2>Custom</h2>
       <p>Sesuai impian</p>
     </div>
+
   </section>
 
-  <!-- Button -->
+  <!-- ACTION BUTTON -->
   <div class="choose">
-    <button class="glass-btn" id="chooseBtn">
+    <button class="glass-btn">
       <span>✓</span>
       <span class="divider"></span>
       <span>PILIH</span>
     </button>
   </div>
 
-  <!-- Footer -->
+  <!-- FOOTER -->
   <footer>
     <i class="fa-brands fa-instagram"></i>
     <i class="fa-brands fa-tiktok"></i>
     <i class="fa-brands fa-facebook"></i>
   </footer>
 
+  <!-- JS -->
   <script src="script.js"></script>
 </body>
 </html>
