@@ -1,67 +1,32 @@
 /* =========================================================
-   PREVENT LAYOUT JUMP ON LOAD
-   ========================================================= */
-body.loading .carousel-wrapper,
-body.loading .choose{
-  opacity:0;
-  transform:translateY(20px);
-}
-
-/* =========================================================
-   GLOBAL BEHAVIOR (MOBILE)
+   GLOBAL (MOBILE ONLY)
    ========================================================= */
 html, body{
+  margin:0;
+  padding:0;
   overscroll-behavior:none;
   touch-action:manipulation;
+  overflow:hidden;
+  font-family:Poppins,sans-serif;
+  color:#fff;
 }
 
-/* =========================================================
-   ROOT VARIABLES
-   ========================================================= */
+*{ box-sizing:border-box }
+
 :root{
   --gold:#d4af37;
 }
 
 /* =========================================================
-   RESET
-   ========================================================= */
-*{ box-sizing:border-box }
-
-body{
-  margin:0;
-  font-family:Poppins,sans-serif;
-  color:#fff;
-  overflow:hidden;
-  position:relative;
-  z-index:1;
-
-  /* smooth theme transition */
-  transition:
-    --c1 1s ease,
-    --c2 1s ease,
-    --c3 1s ease,
-    --bg-base-1 1s ease,
-    --bg-base-2 1s ease;
-}
-
-iframe{ display:none }
-
-/* =========================================================
-   LIQUID BACKGROUND (FULLSCREEN & PADAT)
+   LIQUID BACKGROUND (FULLSCREEN, STABLE)
    ========================================================= */
 .liquid-bg{
   position:fixed;
   inset:0;
   z-index:-1;
   pointer-events:none;
-
-  background:linear-gradient(
-    180deg,
-    var(--bg-base-1),
-    var(--bg-base-2)
-  );
-
-  transition:background 1.2s ease;
+  background:linear-gradient(180deg,var(--bg-base-1),var(--bg-base-2));
+  transition:background 1s ease;
 }
 
 .liquid-bg::before,
@@ -71,34 +36,29 @@ iframe{ display:none }
   inset:-20%;
   filter:blur(28px);
   opacity:.95;
-
   background:radial-gradient(
     circle at 30% 30%,
     var(--c1) 0%,
     var(--c2) 35%,
     var(--c3) 70%
   );
-
-  animation:liquidFlow 3.5s linear infinite;
-  will-change:transform;
+  animation:liquidFlow 4s linear infinite;
 }
 
 .liquid-bg::after{
-  animation-duration:5s;
-  opacity:.85;
+  opacity:.8;
+  animation-duration:6s;
   mix-blend-mode:overlay;
 }
 
 @keyframes liquidFlow{
-  0%   {transform:translate(0,0) scale(1)}
-  25%  {transform:translate(40px,-60px) scale(1.15)}
-  50%  {transform:translate(-60px,40px) scale(1.25)}
-  75%  {transform:translate(50px,60px) scale(1.18)}
-  100% {transform:translate(0,0) scale(1)}
+  0%{transform:translate(0,0) scale(1)}
+  50%{transform:translate(-50px,40px) scale(1.2)}
+  100%{transform:translate(0,0) scale(1)}
 }
 
 /* =========================================================
-   THEME PER CARD
+   THEMES
    ========================================================= */
 body.theme-essential{
   --bg-base-1:#e9ecff;
@@ -166,37 +126,19 @@ body.theme-dream{
   border-radius:10px;
   background:rgba(255,255,255,.15);
   display:flex;
-  justify-content:center;
   align-items:center;
-}
-
-/* =========================================================
-   POPUP
-   ========================================================= */
-.popup{
-  position:fixed;
-  top:80px;
-  right:20px;
-  width:240px;
-  padding:20px;
-  background:rgba(0,0,0,.6);
-  backdrop-filter:blur(14px);
-  border-radius:20px;
-  display:none;
+  justify-content:center;
 }
 
 /* =========================================================
    CAROUSEL
    ========================================================= */
 .carousel-wrapper{
-  position:relative;
-  height:460px;              /* 👈 ditambah agar lega */
+  height:460px;
   display:flex;
   justify-content:center;
   align-items:flex-start;
-  padding-top:90px;          /* 👈 jarak aman dari header */
-
-  transition:.4s ease;
+  padding-top:90px;
 }
 
 .carousel{
@@ -215,9 +157,8 @@ body.theme-dream{
   background:linear-gradient(180deg,#1c1c2b,#0f0f16);
   border-radius:22px;
   text-align:center;
-
-  transform:translate(-50%,-45%); /* 👈 stabil, tidak lompat */
-  transition:.6s ease;
+  transform:translate(-50%,-50%);
+  transition:.5s ease;
   box-shadow:0 30px 60px rgba(0,0,0,.5);
 }
 
@@ -230,22 +171,18 @@ body.theme-dream{
   font-family:"Playfair Display",serif;
 }
 
-/* CARD STATES */
 .card.active{
-  transform:translate(-50%,-50%) scale(1);
   z-index:3;
 }
 
 .card.prev{
   transform:translate(calc(-50% - 160px),-50%) scale(.85) rotate(-6deg);
   filter:blur(4px) brightness(.6);
-  z-index:2;
 }
 
 .card.next{
   transform:translate(calc(-50% + 160px),-50%) scale(.85) rotate(6deg);
   filter:blur(4px) brightness(.6);
-  z-index:2;
 }
 
 .card.hidden{
@@ -254,48 +191,30 @@ body.theme-dream{
 }
 
 /* =========================================================
-   ACTION BUTTON (CENTER & TURUN KE BAWAH)
+   ACTION BUTTON
    ========================================================= */
 .choose{
   width:100%;
   display:flex;
   justify-content:center;
-  align-items:center;
-
-  margin-top:70px;       /* 👈 tombol lebih ke bawah */
-  padding-bottom:40px;  /* 👈 jarak dari footer */
-
-  transition:.4s ease;
+  margin-top:70px;
 }
 
-/* GLASS BUTTON */
 .glass-btn{
   display:flex;
   align-items:center;
   gap:14px;
-
   padding:14px 28px;
   border-radius:16px;
-
   background:rgba(255,255,255,.22);
   backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
-
   border:2px solid var(--accent);
-
   font-weight:600;
   letter-spacing:1px;
   text-transform:uppercase;
-
-  box-shadow:
-    0 10px 30px rgba(0,0,0,.18),
-    inset 0 1px 1px rgba(255,255,255,.6);
-
-  transition:.25s ease;
 }
 
-.glass-btn .btn-icon{
-  font-size:18px;
+.glass-btn span{
   color:var(--accent);
 }
 
@@ -303,25 +222,8 @@ body.theme-dream{
   width:1px;
   height:24px;
   background:var(--accent);
-  opacity:.8;
-}
-
-.glass-btn .btn-text{
-  font-size:13px;
-  color:var(--accent);
 }
 
 .glass-btn:active{
   transform:scale(.96);
-  background:rgba(255,255,255,.32);
-}
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
-footer{
-  display:flex;
-  justify-content:center;
-  gap:30px;
-  margin-top:30px;
 }
