@@ -21,11 +21,19 @@ let liquidOffset = 0;
 /* =========================================================
    CAROUSEL + THEME
    ========================================================= */
+const THEMES = [
+  'theme-essential',
+  'theme-classic',
+  'theme-signature',
+  'theme-luxury',
+  'theme-dream'
+];
+
 function applyTheme(card){
-  const theme = card.dataset.theme;
-  body.className = body.className.replace(/theme-\\w+/g,'');
-  body.classList.add(`theme-${theme}`);
+  THEMES.forEach(t => body.classList.remove(t));
+  body.classList.add(`theme-${card.dataset.theme}`);
 }
+
 
 function updateCarousel(){
   cards.forEach((card,i)=>{
