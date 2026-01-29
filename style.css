@@ -1,3 +1,8 @@
+html, body{
+  overscroll-behavior: none;
+  touch-action: pan-y;
+}
+
 :root{
   --bg1:#5f6caf;
   --bg2:#4b568f;
