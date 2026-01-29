@@ -25,15 +25,30 @@ updateCarousel();
 
 /* SWIPE */
 let startX = 0;
-document.addEventListener('touchstart',e=>{
-  startX = e.touches[0].clientX;
-});
+let isSwiping = false;
 
-document.addEventListener('touchend',e=>{
+document.addEventListener('touchstart', e => {
+  startX = e.touches[0].clientX;
+  isSwiping = true;
+}, { passive: true });
+
+document.addEventListener('touchmove', e => {
+  if(isSwiping){
+    e.preventDefault();
+  }
+}, { passive: false });
+
+document.addEventListener('touchend', e => {
+  if(!isSwiping) return;
+
   let endX = e.changedTouches[0].clientX;
-  if(startX - endX > 50) index = (index + 1) % cards.length;
-  if(endX - startX > 50) index = (index - 1 + cards.length) % cards.length;
+  let diff = startX - endX;
+
+  if(diff > 50) index = (index + 1) % cards.length;
+  if(diff < -50) index = (index - 1 + cards.length) % cards.length;
+
   updateCarousel();
+  isSwiping = false;
 });
 
 /* PILIH */
