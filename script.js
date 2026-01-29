@@ -1,3 +1,5 @@
+document.body.classList.add('loading');
+
 /* =========================================================
    CONFIG & ELEMENT
    ========================================================= */
@@ -119,4 +121,7 @@ menuBtn.onclick = ()=>{
 window.addEventListener('load', ()=>{
   index = 0;
   updateCarousel();
+
+  // tampilkan layout setelah siap
+  document.body.classList.remove('loading');
 });
