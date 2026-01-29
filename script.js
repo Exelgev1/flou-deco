@@ -80,10 +80,25 @@ function unlockAudio(){
   }).catch(()=>{});
 }
 
-// gesture pertama → audio nyala
-['touchstart','touchend','click'].forEach(evt=>{
-  document.addEventListener(evt, unlockAudio, { once:true });
-});
+/* =========================================================
+   AUDIO UNLOCK (CLICK + SWIPE SAFE)
+   ========================================================= */
+let audioUnlocked = false;
+
+function unlockAudio(){
+  if(audioUnlocked) return;
+
+  audio.volume = 1; // atur volume di sini (0.0 - 1.0)
+  audio.play().then(()=>{
+    audioUnlocked = true;
+  }).catch(()=>{});
+}
+
+/* klik di mana pun */
+document.addEventListener('click', unlockAudio, { once:true });
+
+/* swipe di carousel (INI KUNCI UTAMANYA) */
+carousel.addEventListener('touchstart', unlockAudio, { once:true });
 
 /* =========================================================
    SWIPE HANDLER (CAROUSEL)
