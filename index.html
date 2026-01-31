@@ -5,35 +5,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Flou Deco</title>
 
-  <!-- Google Fonts -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome -->
+  <!-- Icons -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
   <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body class="theme-essential">
 
-  <!-- LIQUID BACKGROUND -->
+  <!-- =====================================================
+       INTRO SCREEN (ONE-TIME, CINEMATIC)
+       ===================================================== -->
+  <div class="intro-screen" id="intro">
+    <div class="intro-center">
+      <h1 class="intro-title">Flou Deco</h1>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       BACKGROUND LIQUID
+       ===================================================== -->
   <div class="liquid-bg"></div>
 
-  <!-- BACKGROUND MUSIC -->
+  <!-- =====================================================
+       WATERMARK TEXT (BACKGROUND LOOP)
+       ===================================================== -->
+  <div class="watermark">
+    <div class="watermark-track">
+      <span>Flou Decoration</span>
+      <span>Flou Decoration</span>
+      <span>Flou Decoration</span>
+      <span>Flou Decoration</span>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       BACKGROUND MUSIC
+       ===================================================== -->
   <audio id="bgm" preload="auto" loop>
     <source src="Sweet-Love.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- HEADER -->
+  <!-- =====================================================
+       HEADER
+       ===================================================== -->
   <header class="top">
-    <div style="width:36px"></div> <!-- spacer kiri -->
+    <div style="width:36px"></div>
     <div class="brand">Flou Deco</div>
     <div class="menu">
       <i class="fa-solid fa-bars"></i>
     </div>
   </header>
 
-  <!-- POPUP INFO -->
+  <!-- =====================================================
+       POPUP INFO (HIDDEN)
+       ===================================================== -->
   <div class="popup" id="popup">
     <h3>Flou Deco</h3>
     <p>
@@ -42,51 +72,61 @@
     </p>
   </div>
 
-  <!-- CAROUSEL -->
-  <section class="carousel-wrapper">
+  <!-- =====================================================
+       MAIN CONTENT
+       (carousel & button akan diaktifkan via JS nanti)
+       ===================================================== -->
+  <main class="main-content hidden">
 
-    <div class="card" data-theme="essential" data-link="paket-indoor.html">
-      <h4>PAKET INDOOR</h4>
-      <h2>Essential</h2>
-      <p>Dekorasi indoor elegan</p>
+    <!-- CAROUSEL -->
+    <section class="carousel-wrapper">
+
+      <div class="card" data-theme="essential" data-link="paket-indoor.html">
+        <h4>PAKET INDOOR</h4>
+        <h2>Essential</h2>
+        <p>Dekorasi indoor elegan</p>
+      </div>
+
+      <div class="card" data-theme="classic" data-link="paket-4m.html">
+        <h4>4 METER</h4>
+        <h2>Classic</h2>
+        <p>Backdrop mewah</p>
+      </div>
+
+      <div class="card" data-theme="signature" data-link="paket-6m.html">
+        <h4>6 METER</h4>
+        <h2>Signature</h2>
+        <p>Tampilan eksklusif</p>
+      </div>
+
+      <div class="card" data-theme="luxury" data-link="paket-8m.html">
+        <h4>8 METER</h4>
+        <h2>Luxury</h2>
+        <p>Dekorasi premium</p>
+      </div>
+
+      <div class="card" data-theme="dream" data-link="paket-custom.html">
+        <h4>KUSTOM</h4>
+        <h2>Custom</h2>
+        <p>Sesuai impian</p>
+      </div>
+
+    </section>
+
+    <!-- ACTION BUTTON -->
+    <div class="choose">
+      <button class="glass-btn">
+        <span>✓</span>
+        <span class="divider"></span>
+        <span>PILIH</span>
+      </button>
     </div>
 
-    <div class="card" data-theme="classic" data-link="paket-4m.html">
-      <h4>4 METER</h4>
-      <h2>Classic</h2>
-      <p>Backdrop mewah</p>
-    </div>
+  </main>
 
-    <div class="card" data-theme="signature" data-link="paket-6m.html">
-      <h4>6 METER</h4>
-      <h2>Signature</h2>
-      <p>Tampilan eksklusif</p>
-    </div>
-
-    <div class="card" data-theme="luxury" data-link="paket-8m.html">
-      <h4>8 METER</h4>
-      <h2>Luxury</h2>
-      <p>Dekorasi premium</p>
-    </div>
-
-    <div class="card" data-theme="dream" data-link="paket-custom.html">
-      <h4>KUSTOM</h4>
-      <h2>Custom</h2>
-      <p>Sesuai impian</p>
-    </div>
-
-  </section>
-
-  <!-- ACTION BUTTON -->
-  <div class="choose">
-    <button class="glass-btn">
-      <span>✓</span>
-      <span class="divider"></span>
-      <span>PILIH</span>
-    </button>
-  </div>
-
-  <!-- FOOTER -->
+  <!-- =====================================================
+       FOOTER
+       ===================================================== -->
   <footer>
     <i class="fa-brands fa-instagram"></i>
     <i class="fa-brands fa-tiktok"></i>
