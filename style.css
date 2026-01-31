@@ -1,3 +1,6 @@
+/* =========================================================
+   GLOBAL
+   ========================================================= */
 *{box-sizing:border-box}
 html,body{
   margin:0;
@@ -6,17 +9,63 @@ html,body{
   overflow:hidden;
   font-family:Poppins,sans-serif;
   color:#fff;
-  touch-action:manipulation;
+  background:#0d0d14;
 }
 
-/* ===== THEME ===== */
-body.theme-essential{--accent:#8fa9ff}
-body.theme-classic{--accent:#c9a97a}
-body.theme-signature{--accent:#8aa7ff}
-body.theme-luxury{--accent:#c9b37d}
-body.theme-dream{--accent:#b49bff}
+/* =========================================================
+   THEME COLOR SOURCE (UBAH WARNA DI SINI)
+   ========================================================= */
+body.theme-essential{
+  --m1:#9fa9ff;
+  --m2:#ffd6f3;
+  --m3:#b8e4ff;
+}
+body.theme-classic{
+  --m1:#e6c79c;
+  --m2:#fff1d6;
+  --m3:#c9a97a;
+}
+body.theme-signature{
+  --m1:#8aa7ff;
+  --m2:#d6e3ff;
+  --m3:#b4c4ff;
+}
+body.theme-luxury{
+  --m1:#c9b37d;
+  --m2:#5a4a2a;
+  --m3:#2a261f;
+}
+body.theme-dream{
+  --m1:#ff7bb0;
+  --m2:#b49bff;
+  --m3:#7bd6ff;
+}
 
-/* ===== INTRO ===== */
+/* =========================================================
+   LIQUID METAL BACKGROUND
+   ========================================================= */
+.liquid-metal{
+  position:fixed;
+  inset:-30%;
+  z-index:-1;
+  background:
+    radial-gradient(circle at 20% 30%, var(--m1), transparent 45%),
+    radial-gradient(circle at 80% 20%, var(--m2), transparent 50%),
+    radial-gradient(circle at 50% 80%, var(--m3), transparent 45%),
+    radial-gradient(circle at 70% 70%, rgba(255,255,255,.6), transparent 35%);
+  filter:blur(70px) contrast(120%) saturate(140%);
+  animation:metalFlow 14s cubic-bezier(.22,1,.36,1) infinite alternate;
+  transition:background 1.2s ease;
+}
+
+@keyframes metalFlow{
+  0%{transform:translate(0,0) scale(1)}
+  100%{transform:translate(-120px,80px) scale(1.15)}
+}
+
+/* =========================================================
+   INTRO
+   ========================================================= */
 .intro-screen{
   position:fixed; inset:0; z-index:999;
   background:#0d0d14;
@@ -26,9 +75,8 @@ body.theme-dream{--accent:#b49bff}
 .intro-title{
   font-family:"Playfair Display",serif;
   font-size:48px;
-  letter-spacing:2px;
-  overflow:hidden;
   white-space:nowrap;
+  overflow:hidden;
   border-right:2px solid #fff;
   width:0;
   animation:typing 1.2s steps(10,end) forwards, blink .7s infinite;
@@ -46,48 +94,28 @@ body.theme-dream{--accent:#b49bff}
 }
 @keyframes slideUp{to{transform:translateY(-100%)}}
 
-/* ===== BACKGROUND ===== */
-.liquid-bg{
-  position:fixed; inset:-20%; z-index:-2;
-  background:
-    radial-gradient(circle at 20% 30%, #ff7abf, transparent 40%),
-    radial-gradient(circle at 80% 20%, #7aa2ff, transparent 45%),
-    radial-gradient(circle at 50% 80%, #ffd86b, transparent 45%),
-    radial-gradient(circle at 70% 70%, #7affc8, transparent 40%);
-  filter:blur(60px);
-  animation:liquidMove 10s ease-in-out infinite alternate;
-}
-@keyframes liquidMove{to{transform:translate(-80px,60px)}}
-
-/* ===== WATERMARK ===== */
-.watermark{position:fixed; inset:0; z-index:-1; pointer-events:none}
-.watermark-track{
-  position:absolute; top:50%; display:flex; gap:80px;
-  animation:watermark 25s linear infinite;
-}
-.watermark-track span{
-  font-size:64px;
-  color:rgba(255,255,255,.06);
-  white-space:nowrap;
-}
-@keyframes watermark{to{transform:translateX(-50%)}}
-
-/* ===== HEADER ===== */
+/* =========================================================
+   HEADER
+   ========================================================= */
 .top{
-  display:flex; justify-content:space-between; align-items:center;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
   padding:16px;
 }
-.brand{font-family:"Playfair Display",serif; font-size:22px}
+.brand{font-family:"Playfair Display",serif;font-size:22px}
 .menu{
-  width:36px; height:36px; border-radius:10px;
+  width:36px;height:36px;border-radius:10px;
   background:rgba(255,255,255,.2);
-  display:flex; justify-content:center; align-items:center;
+  display:flex;justify-content:center;align-items:center;
 }
 
-/* ===== POPUP ===== */
+/* =========================================================
+   POPUP
+   ========================================================= */
 .popup{
-  position:fixed; top:70px; right:16px;
-  width:240px; padding:16px;
+  position:fixed;top:70px;right:16px;
+  width:240px;padding:16px;
   background:rgba(0,0,0,.7);
   backdrop-filter:blur(14px);
   border-radius:16px;
@@ -95,14 +123,18 @@ body.theme-dream{--accent:#b49bff}
   z-index:10;
 }
 
-/* ===== MAIN STATE ===== */
-.main-content.hidden{opacity:0; pointer-events:none}
+/* =========================================================
+   MAIN STATE
+   ========================================================= */
+.main-content.hidden{opacity:0;pointer-events:none}
 .main-content.show{
   opacity:1;
   transition:.8s cubic-bezier(.22,1,.36,1);
 }
 
-/* ===== CAROUSEL ===== */
+/* =========================================================
+   CAROUSEL
+   ========================================================= */
 .carousel-wrapper{
   height:420px;
   display:flex;
@@ -117,15 +149,12 @@ body.theme-dream{--accent:#b49bff}
   border-radius:22px;
   background:linear-gradient(180deg,#1c1c2b,#0f0f16);
   box-shadow:0 30px 60px rgba(0,0,0,.6);
-  transition:
-    transform .75s cubic-bezier(.22,1,.36,1),
-    filter .75s ease,
-    opacity .5s ease;
+  transition:transform .75s cubic-bezier(.22,1,.36,1),filter .6s ease,opacity .4s ease;
 }
-.card h4{color:var(--accent); letter-spacing:2px}
+.card h4{color:rgba(255,255,255,.7);letter-spacing:2px}
 .card h2{font-family:"Playfair Display",serif}
 
-.card.active{transform:translateX(0) scale(1); z-index:3}
+.card.active{transform:scale(1);z-index:3}
 .card.prev{
   transform:translateX(-180px) scale(.82) rotate(-8deg);
   filter:blur(6px) brightness(.55);
@@ -134,22 +163,19 @@ body.theme-dream{--accent:#b49bff}
   transform:translateX(180px) scale(.82) rotate(8deg);
   filter:blur(6px) brightness(.55);
 }
-.card.hidden{opacity:0; pointer-events:none}
+.card.hidden{opacity:0;pointer-events:none}
 
-/* ===== BUTTON ===== */
-.choose{display:flex; justify-content:center; margin-top:30px}
+/* =========================================================
+   BUTTON
+   ========================================================= */
+.choose{display:flex;justify-content:center;margin-top:30px}
 .glass-btn{
-  display:flex; gap:12px; align-items:center;
+  display:flex;gap:12px;align-items:center;
   padding:14px 26px;
   border-radius:16px;
   background:rgba(255,255,255,.25);
-  border:2px solid var(--accent);
-  color:var(--accent);
+  border:1px solid rgba(255,255,255,.4);
+  color:#fff;
   font-weight:600;
 }
-.divider{width:1px; height:22px; background:var(--accent)}
-
-/* ===== FOOTER ===== */
-footer{
-  display:flex; justify-content:center; gap:24px; margin-top:20px;
-}
+.divider{width:1px;height:22px;background:rgba(255,255,255,.5)}
