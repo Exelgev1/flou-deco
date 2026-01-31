@@ -17,17 +17,27 @@ body.theme-signature{--accent:#8aa7ff}
 body.theme-luxury{--accent:#c9b37d}
 body.theme-dream{--accent:#b49bff}
 
-/* BACKGROUND */
+/* =========================================================
+   RICH LIQUID BACKGROUND (FULL COLOR)
+   ========================================================= */
+
 .liquid-bg{
   position:fixed;
-  inset:0;
-  z-index:-1;
-  background:radial-gradient(circle at top,var(--accent),#111 70%);
-  animation:bgMove 6s ease-in-out infinite alternate;
+  inset:-20%;
+  z-index:-2;
+  background:
+    radial-gradient(circle at 20% 30%, #ff7abf, transparent 40%),
+    radial-gradient(circle at 80% 20%, #7aa2ff, transparent 45%),
+    radial-gradient(circle at 50% 80%, #ffd86b, transparent 45%),
+    radial-gradient(circle at 70% 70%, #7affc8, transparent 40%);
+  filter:blur(60px);
+  animation:liquidMove 10s ease-in-out infinite alternate;
 }
-@keyframes bgMove{
-  from{filter:hue-rotate(0deg)}
-  to{filter:hue-rotate(25deg)}
+
+/* gerak pelan */
+@keyframes liquidMove{
+  from{transform:translate(0,0)}
+  to{transform:translate(-80px,60px)}
 }
 
 /* HEADER */
@@ -138,4 +148,123 @@ footer{
   justify-content:center;
   gap:24px;
   margin-top:20px;
+}
+
+/* =========================================================
+   INTRO SCREEN (CINEMATIC OPENING)
+   ========================================================= */
+
+.intro-screen{
+  position:fixed;
+  inset:0;
+  z-index:999;
+  background:#0d0d14;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+}
+
+/* pusat tulisan */
+.intro-center{
+  transform:scale(1.25); /* kamera agak dekat di awal */
+}
+
+/* teks brand */
+.intro-title{
+  font-family:"Playfair Display",serif;
+  font-size:48px;            /* UBAH SIZE INTRO DI SINI */
+  font-weight:600;
+  letter-spacing:2px;
+  color:#fff;
+  white-space:nowrap;
+
+  /* typing effect */
+  overflow:hidden;
+  border-right:2px solid rgba(255,255,255,.8);
+  width:0;
+  animation:
+    typing 1.2s steps(10,end) forwards,
+    blink .7s step-end infinite;
+}
+
+/* typing */
+@keyframes typing{
+  from{width:0}
+  to{width:8.5ch} /* jumlah huruf "Flou Deco" */
+}
+
+/* cursor */
+@keyframes blink{
+  50%{border-color:transparent}
+}
+
+/* zoom-out cinematic sebelum pindah halaman */
+.intro-screen.zoom-out .intro-center{
+  animation:zoomOut .6s ease forwards;
+}
+
+@keyframes zoomOut{
+  from{transform:scale(1.25)}
+  to{transform:scale(1)}
+}
+
+/* slide ke atas (hilang) */
+.intro-screen.slide-up{
+  animation:slideUp .8s ease forwards;
+}
+
+@keyframes slideUp{
+  to{transform:translateY(-100%)}
+}
+
+/* =========================================================
+   WATERMARK TEXT BACKGROUND
+   ========================================================= */
+
+.watermark{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  overflow:hidden;
+  pointer-events:none;
+}
+
+.watermark-track{
+  position:absolute;
+  top:50%;
+  left:0;
+  display:flex;
+  gap:80px;
+  transform:translateY(-50%);
+  animation:watermarkMove 25s linear infinite;
+}
+
+.watermark-track span{
+  font-size:64px;          /* ukuran watermark */
+  font-weight:600;
+  color:rgba(255,255,255,.06); /* opacity watermark */
+  white-space:nowrap;
+}
+
+@keyframes watermarkMove{
+  from{transform:translate(0,-50%)}
+  to{transform:translate(-50%,-50%)}
+}
+
+/* =========================================================
+   MAIN CONTENT STATE
+   ========================================================= */
+
+.main-content.hidden{
+  opacity:0;
+  pointer-events:none;
+  transform:translateY(20px);
+}
+
+.main-content.show{
+  opacity:1;
+  pointer-events:auto;
+  transform:translateY(0);
+  transition:.8s ease;
 }
