@@ -15,52 +15,97 @@ html,body{
 /* =========================================================
    THEME COLOR SOURCE (UBAH WARNA DI SINI)
    ========================================================= */
+
 body.theme-essential{
-  --m1:#9fa9ff;
-  --m2:#ffd6f3;
-  --m3:#b8e4ff;
+  --m1:#bfc7ff;
+  --m2:#ffe6f5;
+  --m3:#e0f0ff;
 }
+
 body.theme-classic{
-  --m1:#e6c79c;
-  --m2:#fff1d6;
+  --m1:#f1d9b5;
+  --m2:#fff2da;
   --m3:#c9a97a;
 }
+
 body.theme-signature{
-  --m1:#8aa7ff;
-  --m2:#d6e3ff;
+  --m1:#a2b8ff;
+  --m2:#dce6ff;
   --m3:#b4c4ff;
 }
+
 body.theme-luxury{
-  --m1:#c9b37d;
-  --m2:#5a4a2a;
+  --m1:#e6d2a3;
+  --m2:#8a6d3b;
   --m3:#2a261f;
 }
+
 body.theme-dream{
-  --m1:#ff7bb0;
-  --m2:#b49bff;
-  --m3:#7bd6ff;
+  --m1:#ff9ad5;
+  --m2:#c3a8ff;
+  --m3:#8fdcff;
 }
 
 /* =========================================================
-   LIQUID METAL BACKGROUND
+   CHROME LIQUID METAL — MAX QUALITY
    ========================================================= */
+
 .liquid-metal{
   position:fixed;
-  inset:-30%;
+  inset:-40%;
   z-index:-1;
+
+  /* ===== CHROME / MIRROR COLOR LAYERS ===== */
   background:
-    radial-gradient(circle at 20% 30%, var(--m1), transparent 45%),
-    radial-gradient(circle at 80% 20%, var(--m2), transparent 50%),
-    radial-gradient(circle at 50% 80%, var(--m3), transparent 45%),
-    radial-gradient(circle at 70% 70%, rgba(255,255,255,.6), transparent 35%);
-  filter:blur(70px) contrast(120%) saturate(140%);
-  animation:metalFlow 14s cubic-bezier(.22,1,.36,1) infinite alternate;
-  transition:background 1.2s ease;
+    /* specular highlight (lamp reflection) */
+    radial-gradient(circle at 30% 20%, rgba(255,255,255,.95), transparent 22%),
+
+    /* secondary highlight */
+    radial-gradient(circle at 70% 30%, rgba(255,255,255,.85), transparent 28%),
+
+    /* iridescent metal colors (THEME DRIVEN) */
+    radial-gradient(circle at 20% 60%, var(--m1), transparent 48%),
+    radial-gradient(circle at 80% 50%, var(--m2), transparent 52%),
+    radial-gradient(circle at 50% 85%, var(--m3), transparent 50%),
+
+    /* deep shadow pool */
+    radial-gradient(circle at 50% 50%, rgba(0,0,0,.65), transparent 70%);
+
+  /* ===== VISUAL BOOST ===== */
+  filter:
+    blur(55px)
+    contrast(160%)
+    brightness(120%)
+    saturate(160%);
+
+  /* ===== CINEMATIC MOTION ===== */
+  animation:chromeFlow 18s cubic-bezier(.22,1,.36,1) infinite alternate;
+
+  transition:
+    background 1.4s ease,
+    filter 1.2s ease;
 }
 
-@keyframes metalFlow{
-  0%{transform:translate(0,0) scale(1)}
-  100%{transform:translate(-120px,80px) scale(1.15)}
+/* ===== SLOW HEAVY METAL MOTION ===== */
+@keyframes chromeFlow{
+  0%{
+    transform:
+      translate(0,0)
+      scale(1)
+      rotate(0deg);
+  }
+  50%{
+    transform:
+      translate(-120px,90px)
+      scale(1.18)
+      rotate(6deg);
+  }
+  100%{
+    transform:
+      translate(100px,-80px)
+      scale(1.25)
+      rotate(-6deg);
+  }
 }
 
 /* =========================================================
