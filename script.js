@@ -10,38 +10,37 @@ const audio = document.getElementById('bgm');
 
 let index = 0;
 let startX = 0;
-let audioUnlocked = false;
 let firstSwipe = false;
 
 const SWIPE = 40;
 const INTRO_KEY = 'flou_intro_seen';
 
-/* ===== INTRO ===== */
+/* INTRO */
 function playIntro(){
-  setTimeout(()=> intro.classList.add('zoom-out'), 1400);
+  setTimeout(()=>intro.classList.add('zoom-out'),1400);
   setTimeout(()=>{
     intro.classList.add('slide-up');
     mainContent.classList.remove('hidden');
     mainContent.classList.add('show');
-    setTimeout(()=> intro.remove(), 900);
-  }, 2200);
+    setTimeout(()=>intro.remove(),900);
+  },2200);
 }
 if(sessionStorage.getItem(INTRO_KEY)){
   intro.remove();
   mainContent.classList.remove('hidden');
   mainContent.classList.add('show');
 }else{
-  sessionStorage.setItem(INTRO_KEY, '1');
+  sessionStorage.setItem(INTRO_KEY,'1');
   playIntro();
 }
 
-/* ===== CAROUSEL ===== */
+/* CAROUSEL */
 function updateCarousel(){
   cards.forEach((c,i)=>{
-    c.className = 'card';
+    c.className='card';
     if(i===index){
       c.classList.add('active');
-      body.className = `theme-${c.dataset.theme}`;
+      body.className=`theme-${c.dataset.theme}`;
     }else if(i===(index-1+cards.length)%cards.length){
       c.classList.add('prev');
     }else if(i===(index+1)%cards.length){
@@ -53,28 +52,28 @@ function updateCarousel(){
 }
 updateCarousel();
 
-/* ===== SWIPE ===== */
+/* SWIPE */
 carousel.addEventListener('touchstart',e=>{
-  startX = e.touches[0].clientX;
+  startX=e.touches[0].clientX;
 },{passive:true});
 
 carousel.addEventListener('touchend',e=>{
-  const diff = startX - e.changedTouches[0].clientX;
+  const diff=startX-e.changedTouches[0].clientX;
   if(Math.abs(diff)<SWIPE) return;
 
   index = diff>0 ? (index+1)%cards.length : (index-1+cards.length)%cards.length;
 
   if(!firstSwipe){
-    firstSwipe = true;
-    audio.play().then(()=> audioUnlocked=true).catch(()=>{});
+    firstSwipe=true;
+    audio.play().catch(()=>{});
   }
   updateCarousel();
 });
 
-/* ===== BUTTON ===== */
-chooseBtn.onclick = ()=> location.href = cards[index].dataset.link;
+/* BUTTON */
+chooseBtn.onclick=()=>location.href=cards[index].dataset.link;
 
-/* ===== POPUP ===== */
-menuBtn.onclick = ()=>{
-  popup.style.display = popup.style.display==='block'?'none':'block';
+/* POPUP */
+menuBtn.onclick=()=>{
+  popup.style.display=popup.style.display==='block'?'none':'block';
 };
