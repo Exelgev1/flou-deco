@@ -1,105 +1,88 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flou Deco</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flou Deco</title>
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
-
-  <!-- Icons -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-
-  <link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body class="theme-essential">
 
-  <!-- ===== NETFLIX STYLE INTRO ===== -->
-  <div class="intro-screen" id="intro">
-  
-    <!-- Background gelap -->
-    <div class="intro-bg"></div>
+<!-- INTRO -->
+<div class="intro" id="intro">
+  <h1>Flou Deco</h1>
+</div>
 
-    <!-- Title -->
-    <h1 class="intro-logo">
-      Flou Deco
-    </h1>
+<!-- BACKGROUND -->
+<div class="liquid-metal"></div>
 
-  </div>
+<!-- AUDIO -->
+<audio id="bgm" preload="auto" loop>
+  <source src="Sweet-Love.mp3" type="audio/mpeg">
+</audio>
 
+<!-- HEADER -->
+<header class="top">
+  <div></div>
+  <div class="brand">Flou Deco</div>
+  <div class="menu"><i class="fa-solid fa-bars"></i></div>
+</header>
 
-  <!-- LIQUID METAL BACKGROUND -->
-  <div class="liquid-metal"></div>
+<!-- POPUP -->
+<div class="popup" id="popup">
+  <h3>Flou Deco</h3>
+  <p>Dekorasi wedding premium dengan konsep elegan & berkelas.</p>
+</div>
 
-  <!-- AUDIO -->
-  <audio id="bgm" preload="auto" loop>
-    <source src="Sweet-Love.mp3" type="audio/mpeg">
-  </audio>
+<!-- MAIN -->
+<main id="main">
 
-  <!-- HEADER -->
-  <header class="top">
-    <div></div>
-    <div class="brand">Flou Deco</div>
-    <div class="menu">
-      <i class="fa-solid fa-bars"></i>
-    </div>
-  </header>
+<section class="carousel-wrapper">
 
-  <!-- POPUP -->
-  <div class="popup" id="popup">
-    <h3>Flou Deco</h3>
-    <p>Dekorasi wedding premium dengan konsep elegan & berkelas.</p>
-  </div>
+<div class="card" data-theme="essential" data-link="paket-indoor.html">
+<h4>PAKET INDOOR</h4>
+<h2>Essential</h2>
+<p>Dekorasi indoor elegan</p>
+</div>
 
-  <!-- MAIN -->
-  <main class="main-content hidden">
+<div class="card" data-theme="classic" data-link="paket-4m.html">
+<h4>4 METER</h4>
+<h2>Classic</h2>
+<p>Backdrop mewah</p>
+</div>
 
-    <section class="carousel-wrapper">
+<div class="card" data-theme="signature" data-link="paket-6m.html">
+<h4>6 METER</h4>
+<h2>Signature</h2>
+<p>Tampilan eksklusif</p>
+</div>
 
-      <div class="card" data-theme="essential" data-link="paket-indoor.html">
-        <h4>PAKET INDOOR</h4>
-        <h2>Essential</h2>
-        <p>Dekorasi indoor elegan</p>
-      </div>
+<div class="card" data-theme="luxury" data-link="paket-8m.html">
+<h4>8 METER</h4>
+<h2>Luxury</h2>
+<p>Dekorasi premium</p>
+</div>
 
-      <div class="card" data-theme="classic" data-link="paket-4m.html">
-        <h4>4 METER</h4>
-        <h2>Classic</h2>
-        <p>Backdrop mewah</p>
-      </div>
+<div class="card" data-theme="dream" data-link="paket-custom.html">
+<h4>KUSTOM</h4>
+<h2>Custom</h2>
+<p>Sesuai impian</p>
+</div>
 
-      <div class="card" data-theme="signature" data-link="paket-6m.html">
-        <h4>6 METER</h4>
-        <h2>Signature</h2>
-        <p>Tampilan eksklusif</p>
-      </div>
+</section>
 
-      <div class="card" data-theme="luxury" data-link="paket-8m.html">
-        <h4>8 METER</h4>
-        <h2>Luxury</h2>
-        <p>Dekorasi premium</p>
-      </div>
+<div class="choose">
+<button id="chooseBtn">
+✓ <span></span> PILIH
+</button>
+</div>
 
-      <div class="card" data-theme="dream" data-link="paket-custom.html">
-        <h4>KUSTOM</h4>
-        <h2>Custom</h2>
-        <p>Sesuai impian</p>
-      </div>
+</main>
 
-    </section>
-
-    <div class="choose">
-      <button class="glass-btn">
-        <span>✓</span>
-        <span class="divider"></span>
-        <span>PILIH</span>
-      </button>
-    </div>
-
-  </main>
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
