@@ -61,3 +61,24 @@ popup.style.display=popup.style.display==="block"?"none":"block";
 };
 
 });
+
+/* INTRO CINEMATIC */
+
+const intro = document.getElementById("intro");
+const main = document.getElementById("main");
+
+function runIntro(){
+intro.classList.add("play");
+
+setTimeout(()=>{
+intro.classList.add("hide");
+main.style.opacity=1;
+
+setTimeout(()=>{
+intro.remove();
+},1000);
+
+},2600);
+}
+
+runIntro();
