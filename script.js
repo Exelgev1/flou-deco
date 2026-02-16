@@ -15,23 +15,46 @@ let firstSwipe = false;
 const SWIPE = 40;
 const INTRO_KEY = 'flou_intro_seen';
 
-/* INTRO */
-function playIntro(){
-  setTimeout(()=>intro.classList.add('zoom-out'),1400);
+/* =========================================================
+   NETFLIX STYLE INTRO CONTROL
+   ========================================================= */
+
+const intro = document.getElementById('intro');
+const mainContent = document.querySelector('.main-content');
+
+/* 🔧 CONFIGURATION */
+const INTRO_DURATION = 2500; // total durasi sebelum fade (ms)
+const SHOW_ONCE_KEY = "flou_intro_seen"; // hapus ini kalau mau selalu muncul
+
+function startIntro(){
+
+  // Mulai animasi
+  intro.classList.add("play");
+
+  // Setelah durasi → fade out
   setTimeout(()=>{
-    intro.classList.add('slide-up');
-    mainContent.classList.remove('hidden');
-    mainContent.classList.add('show');
-    setTimeout(()=>intro.remove(),900);
-  },2200);
+    intro.classList.add("hide");
+
+    // Tampilkan konten utama
+    mainContent.classList.remove("hidden");
+    mainContent.classList.add("show");
+
+    // Hapus intro dari DOM
+    setTimeout(()=>{
+      intro.remove();
+    },1000);
+
+  }, INTRO_DURATION);
 }
-if(sessionStorage.getItem(INTRO_KEY)){
+
+/* ===== Show Once Per Session ===== */
+if(sessionStorage.getItem(SHOW_ONCE_KEY)){
   intro.remove();
-  mainContent.classList.remove('hidden');
-  mainContent.classList.add('show');
+  mainContent.classList.remove("hidden");
+  mainContent.classList.add("show");
 }else{
-  sessionStorage.setItem(INTRO_KEY,'1');
-  playIntro();
+  sessionStorage.setItem(SHOW_ONCE_KEY,"1");
+  startIntro();
 }
 
 /* CAROUSEL */
